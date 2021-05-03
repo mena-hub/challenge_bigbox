@@ -1,0 +1,41 @@
+{% extends "bigbox/base.html" %}
+{% block title %}{{ information.name }}{% endblock %}
+
+{% block content %}
+<section class="section border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto pb-5">
+                <div class="text-dark">
+                    <h2 class="pb-2">Bonjour</h2>
+                    <p>{{ information.description }}</p>
+                    <h3 class="py-2">Acerca de esta Bigbox:</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Para 2 personas</li>
+                        <li class="list-group-item">Se puede usar hasta el 03/09/2021</li>
+                        <li class="list-group-item">Contiene 79 opciones</li>
+                        <li class="list-group-item">Se puede cambiar por otra Bigbox</li>
+                    </ul>
+                    <h4 class="py-4">Formatos del regalo:</h4>
+                    <p>Regalo digital, Regalo físico</p>
+                    <h2 class="py-2">${{ information.price }}</h2>
+                    <h3 class="pt-4 pb-2">Dentro del regalo:</h3>
+                    <p>Tu agasajado va a poder elegir una de estas 79 experiencias: <strong>{{ information.activities.all|slice:":5"|join:", "}} ...</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section border-bottom">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="d-flex align-items-center">
+                    <div class="h4">Experiencias</div>
+                    <div class="ml-auto lead"><a href="{% url 'activities' information.id %}">Ver todas</a></div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
