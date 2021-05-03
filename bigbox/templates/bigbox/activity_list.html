@@ -1,0 +1,31 @@
+{% extends "bigbox/base.html" %}
+{% block title %}Actividades{% endblock %}
+
+{% block content %}
+<section class="section pagination border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto pb-5">
+                <div class="text-dark text-center">
+                    {% for activity in activities %}
+                        <li class="h3">{{ activity.name }}</li>
+                    {% endfor %}
+                    <span class="step_links">
+                        {% if activities.has_previous %}
+                            <a href="?page=1">&laquo; primera</a>
+                            <a href="?page={{ activities.previous_page_number }}">anterior</a>
+                        {% endif %}
+                        <span class="current">
+                            Página {{ activities.number }} de {{ activities.paginator.num_pages }}.
+                        </span>
+                        {% if activities.has_next %}
+                            <a href="?page={{ activities.next_page_number }}">siguiente</a>
+                            <a href="?page={{ activities.paginator.num_pages }}">última &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
