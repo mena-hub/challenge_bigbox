@@ -1,0 +1,40 @@
+{% extends "bigbox/base.html" %}
+{% block title %}{{ relation.name }}{% endblock %}
+
+{% block content %}
+<section class="section border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto pb-5">
+                <div class="text-dark">
+                    <h2 class="pb-2">{{ relation.name }}</h2>
+                    <p>{{ relation.description }}</p>
+                    <h3 class="py-2">Experiencia incluida en la Bigbox Bonjour</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Resumen</li>
+                        <li class="list-group-item">¿Qué incluye?</li>
+                        <li class="list-group-item">Mapa y Contacto</li>
+                        <li class="list-group-item">Opiniones</li>
+                    </ul>
+                    <h3 class="py-4">Galería de imágenes</h3>
+                    <p>***</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="border-bottom">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-12">
+                <ul class="h4 list-inline">
+                    <li class="list-inline-item">Buscar</li>
+                    <li class="list-inline-item">Mapa</li>
+                    <li class="list-inline-item">Locación</li>
+                    <li class="list-inline-item">Ordenar</li>
+                </ul> 
+            </div>
+        </div>
+    </div>
+</section> 
+{% endblock %}
