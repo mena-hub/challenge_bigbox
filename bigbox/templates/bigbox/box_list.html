@@ -1,0 +1,31 @@
+{% extends "bigbox/base.html" %}
+{% block title %}Boxes{% endblock %}
+
+{% block content %}
+<section class="section border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto pb-5">
+                <div class="text-dark">
+                    <h2 class="pb-2">Ñam! Gastronomía</h2>
+                    <ul class="list-group">
+                        {% for box in boxes %}
+                            <li class="list-group-item pl-4"><a href="{% url 'information' box.id %}">{{ box.name }}</a></li>
+                        {% endfor %}
+                        <li class="list-group-item pl-4">Take Away</li>
+                        <li class="list-group-item pl-4">Experiencia Gourmet</li>
+                        <li class="list-group-item pl-4">Tentación</li>
+                        <li class="list-group-item pl-4">Terrazas Foodies</li>
+                        <li class="list-group-item pl-4">Night Out</li>
+                        <li class="list-group-item pl-4">Cocktail Night</li>
+                        <li class="list-group-item pl-4">Vinos y Bodegas</li>
+                        <li class="list-group-item pl-4">Cabas y Salones</li>
+                        <li class="list-group-item pl-4">Chill Out</li>
+                        <li class="list-group-item pl-4">De Autor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
