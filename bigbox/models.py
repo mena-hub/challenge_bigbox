@@ -34,7 +34,7 @@ class Activity(Product):
     purchase_available = models.BooleanField(default=False, verbose_name='disponible venta individual')
 
 class Box(Product):
-    activities = models.ManyToManyField(Activity)
+    activities = models.ManyToManyField(Activity, verbose_name="actividades") # !!! Lo importante
     price = models.IntegerField(verbose_name='precio de venta')
     purchase_available = models.BooleanField(default=False, verbose_name='disponible venta individual')
-    # slug = models.CharField(max_length = 20, null=True)
+    slug = models.CharField(max_length=20, null=True, blank=True) # blank=True <-- No, a futuro
