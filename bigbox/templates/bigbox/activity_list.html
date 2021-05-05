@@ -6,23 +6,48 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto pb-5">
-                <div class="text-dark text-center">
-                    {% for activity in activities %}
-                        <li class="h3">{{ activity.name }}</li>
-                    {% endfor %}
-                    <span class="step_links">
-                        {% if activities.has_previous %}
-                            <a href="?page=1">&laquo; primera</a>
-                            <a href="?page={{ activities.previous_page_number }}">anterior</a>
-                        {% endif %}
-                        <span class="current">
-                            Página {{ activities.number }} de {{ activities.paginator.num_pages }}.
-                        </span>
-                        {% if activities.has_next %}
-                            <a href="?page={{ activities.next_page_number }}">siguiente</a>
-                            <a href="?page={{ activities.paginator.num_pages }}">última &raquo;</a>
-                        {% endif %}
-                    </span>
+                <div class="text-dark">
+                    <h2 class="py-3">Comprar esta Bigbox</h2>
+                    <p>Ver felices a los nuestros nos hace muy felices.</p>
+                    <h4 class="text-uppercase py-3"> # EXPERIENCIAS</h4>
+                    <ul class="list-group">
+                        {% for activity in activities %}
+                            <li class="list-group-item pl-4">
+                                <a href="#">{{ activity.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <nav class="pt-4" aria-label="Navigation">
+                        <ul class="pagination justify-content-center">
+                            {% if activities.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ activities.previous_page_number }}">Anterior</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                </li>
+                            {% endif %}
+                            {% for index in activities.paginator.page_range %}
+                                {% if activities.number == index %}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">{{ index }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ index }}">{{ index }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if activities.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ activities.next_page_number }}">Siguiente</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Siguiente</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
