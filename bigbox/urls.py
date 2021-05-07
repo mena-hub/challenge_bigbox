@@ -1,9 +1,6 @@
 from django.urls import path
 from bigbox import views
 
-from django.urls import path
-from bigbox import views
-
 bigbox_patterns = ([
     path('', views.boxes, name="boxes"),
     path('<int:box_id>/', views.information, name="information"),

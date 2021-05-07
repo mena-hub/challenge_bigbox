@@ -29,8 +29,8 @@ def activities(request, box_id):
     return render(request, "bigbox/activity_list.html", {'activities': activities})
 
 def relation(request, box_id, activity_id):
-    box_detail = get_object_or_404(Activity, id=activity_id)
-    return render(request, "bigbox/activity_detail.html", {'relation': box_detail})
+    activity_detail = get_object_or_404(Activity, id=activity_id)
+    return render(request, "bigbox/activity_detail.html", {'relation': activity_detail})
 
 def label(request, box_slug):
     box_label_detail = get_list_or_404(Box)
