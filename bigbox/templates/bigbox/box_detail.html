@@ -22,7 +22,7 @@
                     <h3 class="pt-4 pb-2">Dentro del regalo:</h3>
                     <p>Tu agasajado va a poder elegir una de estas experiencias: 
                     {% for data in information.activities.all|slice:":5" %}
-                        <p class="h4 py-2">{{ data.name }}</p>
+                        <p class="h4 py-2"><a href="#">{{ data.name }}</a></p>
                         <p>{{ data.description }}</p>
                     {% endfor %}
                 </div>
@@ -35,9 +35,9 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="d-flex align-items-center">
-                    <div class="h4">Experiencias</div>
-                    <div class="ml-auto lead"><a href="{% url 'activities' information.id %}">Ver todas</a></div>
-                </div> 
+                    <h4 class="text-uppercase">Experiencias</h4>
+                    <h5 class="ml-auto"><a href="{% url 'bigbox:activities' information.id %}">Ver todo</a></h5>
+                </div>
             </div>
         </div>
     </div>
