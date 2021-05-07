@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from bigbox import views
+from bigbox.urls import bigbox_patterns
 
 urlpatterns = [
-    path('', include('bigbox.urls')),
+    path('', views.home, name="home"),
+    path('box/', include(bigbox_patterns, namespace='bigbox')),
     path('admin/', admin.site.urls),
 ]
