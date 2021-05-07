@@ -1,5 +1,15 @@
-*.pyc
-db.sqlite3
+# Entorno
 env_bigbox
+
+# Text backup files
+*.bak
+
+# Bytecode files
+*.pyc
 __pycache__
-local_settings.py
+
+# Database
+*.sqlite3
+
+# Settings
+.env
