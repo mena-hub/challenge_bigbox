@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from .models import Box, Activity
 
 def home(request):
@@ -29,9 +29,9 @@ def activities(request, box_id):
     return render(request, "bigbox/activity_list.html", {'activities': activities})
 
 def relation(request, box_id, activity_id):
-    activity_detail = get_object_or_404(Activity, activity_id=activity_id)
-    return render(request, "bigbox/activity_detail.html", {'relation': activity_detail}) # No resuelto
+    box_detail = get_object_or_404(Activity, id=activity_id)
+    return render(request, "bigbox/activity_detail.html", {'relation': box_detail})
 
-def label(request, slug):
-    box_label_detail = get_object_or_404(Box, slug=slug)
-    return render(request, "bigbox/box_detail.html", {'label': box_label_detail})
+def label(request, box_slug):
+    box_label_detail = get_list_or_404(Box)
+    return render(request, "bigbox/sample.html", {'label': box_label_detail})
