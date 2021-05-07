@@ -13,3 +13,4 @@ __pycache__
 
 # Settings
 .env
+local_settings.py 
