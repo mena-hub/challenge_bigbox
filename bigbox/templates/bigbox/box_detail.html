@@ -1,5 +1,5 @@
 {% extends "bigbox/base.html" %}
-{% block title %}{{ information.name }}{% endblock %}
+{% block title %}{{ box_detail.name }}{% endblock %}
 
 {% block content %}
 <section class="section border-bottom">
@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto pb-5">
                 <div class="text-dark">
-                    <h2 class="py-3">{{ information.name }}</h2>
-                    <p>{{ information.description }}</p>
+                    <h2 class="py-3">{{ box_detail.name }}</h2>
+                    <p>{{ box_detail.description }}</p>
                     <h3 class="py-3">Acerca de esta Bigbox:</h3>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Cantidad personas</li>
@@ -18,13 +18,15 @@
                     </ul>
                     <h4 class="py-4">Formatos del regalo:</h4>
                     <p>Seleccionar digital o físico.</p>
-                    <h2 class="py-3">${{ information.price }}</h2>
+                    <h2 class="py-3">${{ box_detail.price }}</h2>
                     <h3 class="pt-4 pb-2">Dentro del regalo:</h3>
-                    <p>Tu agasajado va a poder elegir una de estas experiencias: 
-                    {% for data in information.activities.all|slice:":5" %}
-                        <p class="h4 py-2"><a href="#">{{ data.name }}</a></p>
-                        <p>{{ data.description }}</p>
+                    <div>
+                    <p>Tu agasajado va a poder elegir una de estas experiencias:</p>
+                    {% for activity in box_detail.activities.all|slice:":5" %}
+                        <p class="h4 py-2"><a href="{% url 'bigbox:activity_detail' box_detail.id activity.id %}">{{ activity.name }}</a></p>
+                        <p>{{ activity.description }}</p>
                     {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,7 +38,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="d-flex align-items-center">
                     <h4 class="text-uppercase">Experiencias</h4>
-                    <h5 class="ml-auto"><a href="{% url 'bigbox:activities' information.id %}">Ver todo</a></h5>
+                    <h5 class="ml-auto"><a href="{% url 'bigbox:activities' box_detail.id %}">Ver todo</a></h5>
                 </div>
             </div>
         </div>
