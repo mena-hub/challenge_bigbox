@@ -13,7 +13,7 @@
                     <h4 class="py-3">Ruta por ID</h4>
                     <ul class="pb-2 list-group">
                         {% for box in boxes %}
-                            <li class="list-group-item pl-4"><a href="{% url 'bigbox:information' box.id %}">{{ box.name }}</a></li>
+                            <li class="list-group-item pl-4"><a href="{% url 'bigbox:box_detail' box.id %}">{{ box.name }}</a></li>
                         {% endfor %}
                     </ul>
                     <h4 class="py-3">Ruta por SLUG</h4>
@@ -21,7 +21,7 @@
                         {% get_box_list as boxes_all %}
                         {% for box in boxes_all %}
                             <li class="list-group-item pl-4">
-                                <a href="{% url 'bigbox:label' box.slug|slugify %}">{{ box.name }}</a>
+                                <a href="{% url 'bigbox:tag' box.slug|slugify %}">{{ box.name }}</a>
                             </li>
                         {% endfor %}
                     </ul>
