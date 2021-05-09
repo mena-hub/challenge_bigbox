@@ -6,16 +6,16 @@ def home(request):
     return render(request, "bigbox/challenge.html")
 
 def boxes(request):
-    box_list = Box.objects.all()
+    box_list = get_list_or_404(Box)
     return render(request, "bigbox/box_list.html", {'boxes': box_list})
 
-def information(request, box_id):
-    box_detail = get_object_or_404(Box, id=box_id)
-    return render(request, "bigbox/box_detail.html", {'information': box_detail})
+def box_detail(request, box_id):
+    box_information = get_object_or_404(Box, id=box_id)
+    return render(request, "bigbox/box_detail.html", {'box_detail': box_information})
 
 def activities(request, box_id):
     boxes = get_object_or_404(Box, id=box_id)
-    activity_list = boxes.activities.all().order_by('id')
+    activity_list = boxes.activities.all()
     #----
     page = request.GET.get('page', 1)
     # ----
@@ -28,10 +28,10 @@ def activities(request, box_id):
         activities = paginator.page(paginator.num_pages)
     return render(request, "bigbox/activity_list.html", {'activities': activities})
 
-def relation(request, box_id, activity_id):
-    activity_detail = get_object_or_404(Activity, id=activity_id)
-    return render(request, "bigbox/activity_detail.html", {'relation': activity_detail})
+def activity_detail(request, box_id, activity_id):
+    activity_information = get_object_or_404(Activity, id=activity_id)
+    return render(request, "bigbox/activity_detail.html", {'activity_detail': activity_information})
 
-def label(request, box_slug):
-    box_label_detail = get_list_or_404(Box)
-    return render(request, "bigbox/sample.html", {'label': box_label_detail})
+def box_detail_tag(request, slug):
+    tag_information = get_list_or_404(Box)
+    return render(request, "bigbox/sample.html", {'tag': tag_information})
