@@ -11,8 +11,12 @@
                     <p>Ver felices a los nuestros nos hace muy felices.</p>
                     <h4 class="text-uppercase py-3">Elige tu propia aventura</h4>
                     <ul class="list-group">
-                        {% for activity in activities %}
-                            <li class="list-group-item pl-4">{{ activity.name }}</li>
+                        {% for data in box_data %}
+                            {% for activity in activities %}
+                                <li class="list-group-item pl-4">
+                                    <a href="{% url 'bigbox:activity_detail' data.id activity.id %}">{{ activity.name }}</a>
+                                </li>
+                            {% endfor %}
                         {% endfor %}
                     </ul>
                     <nav class="pt-4" aria-label="Navigation">
@@ -34,12 +38,12 @@
                                     <li class="page-item active" aria-current="page">
                                         <span class="page-link">{{ index }} <span class="sr-only">(current)</span></span>
                                     </li>
-                                    {% elif index > activities.number|add:'-3' and index < activities.number|add:'3' %}
+                                {% elif index > activities.number|add:'-3' and index < activities.number|add:'3' %}
                                     <li class="page-item"><a class="page-link" href="?page={{ index }}">{{ index }}</a></li>
-                                    {% endif %}
+                                {% endif %}
                             {% endfor %}
                             {% if activities.paginator.num_pages > activities.number|add:'2' %}
-                            <li class="page-item"><a class="page-link" href="?page={{ activities.number|add:'3' }}">&hellip;</a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ activities.number|add:'3' }}">&hellip;</a></li>
                             {% endif %}
                             {% if activities.has_next %}
                                 <li class="page-item">

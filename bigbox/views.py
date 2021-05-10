@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from .models import Box, Activity
 
 def home(request):
@@ -14,11 +14,12 @@ def box_detail(request, box_id):
     return render(request, "bigbox/box_detail.html", {'box_detail': box_information})
 
 def activities(request, box_id):
-    boxes = get_object_or_404(Box, id=box_id)
-    activity_list = boxes.activities.all()
+    boxes = get_list_or_404(Box, id=box_id)
+    #----
+    identification_number = get_object_or_404(Box, id=box_id)
+    activity_list =  identification_number.activities.all()
     #----
     page = request.GET.get('page', 1)
-    # ----
     paginator = Paginator(activity_list, 20)
     try:
         activities = paginator.page(page)
@@ -26,7 +27,7 @@ def activities(request, box_id):
         activities = paginator.page(1)
     except EmptyPage:
         activities = paginator.page(paginator.num_pages)
-    return render(request, "bigbox/activity_list.html", {'activities': activities})
+    return render(request, "bigbox/activity_list.html", {'activities': activities, 'box_data': boxes})
 
 def activity_detail(request, box_id, activity_id):
     activity_information = get_object_or_404(Activity, id=activity_id)
