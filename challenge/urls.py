@@ -20,6 +20,6 @@ from bigbox.urls import bigbox_patterns
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('box/', include(bigbox_patterns, namespace='bigbox')),
+    path('box/', include(bigbox_patterns)),
     path('admin/', admin.site.urls),
 ]
